@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Interface3D/>
+  <AppFooter/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Interface3D from './components/Interface3D.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Interface3D,
+    AppFooter
   }
 }
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
 </style>
