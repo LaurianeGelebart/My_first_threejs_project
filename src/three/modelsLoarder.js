@@ -41,6 +41,7 @@ const loaderGLTF = (path, position, scene) =>
         const center = new THREE.Vector3();
         box.getCenter(center); 
         model.position.sub(center); 
+        shadowsSetUp(model);
         
         // Créer un pivot (un objet vide pour appliquer les transformations)
         const pivot = new THREE.Object3D();
@@ -63,3 +64,24 @@ const loaderGLTF = (path, position, scene) =>
   );
 };
 
+
+/**
+ * Configure les ombres du modèle, permettant à certains objets de projeter ou recevoir des ombres.
+ *
+ * @param {THREE.Object3D} model - Le modèle 3D sur lequel configurer les ombres.
+ *
+ * @example
+ * shadowsSetUp(model);
+ */
+const shadowsSetUp = (model) => 
+{
+  model.traverse((node) => {
+    if (node.isMesh) {
+      if (/sol/i.test(node.name)) {
+        node.receiveShadow = true;
+      } else {
+        node.castShadow = true;
+      }
+    }
+  });
+};

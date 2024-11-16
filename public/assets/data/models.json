@@ -3,6 +3,10 @@
         {
             "path": "./assets/models/canape.gltf",
             "position": [0, 0, 0]
+        },
+        {
+            "path": "./assets/models/sol.gltf",
+            "position": [0, -0.23, 0]
         }
     ]
 }

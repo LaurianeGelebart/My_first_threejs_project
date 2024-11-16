@@ -11,11 +11,20 @@ import * as THREE from "three";
 export const createScene = () => 
 {
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xfafafa);
   
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
     scene.add(ambientLight);
 
-    scene.background = new THREE.Color(0xfafafa);
+    const pointLight = new THREE.PointLight(0xf7e3c1, 2);
+    pointLight.position.set(-0.6, 0.2, 0.8);
+    scene.add(pointLight);
+
+    const shadowLight = new THREE.PointLight(0xf7e3c1, 4);
+    shadowLight.position.set(1, 0.5, -0.3);
+    shadowLight.castShadow = true;
+    shadowLight.shadow.radius = 8;
+    scene.add(shadowLight);
 
     return scene;
 };
@@ -34,6 +43,8 @@ export const createScene = () =>
 export const createRenderer = (width, height, container) => 
 {
     const renderer = new THREE.WebGLRenderer();
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
