@@ -2,11 +2,54 @@
     "objects": [
         {
             "path": "./assets/models/canape.gltf",
-            "position": [0, 0, 0]
+            "position": [0.03, -0.19, -0.3]
+        },
+        {
+            "path": "./assets/models/cadres.gltf",
+            "position": [0.05, 0.36, -0.4]
+        },
+        {
+            "path": "./assets/models/livres.gltf",
+            "position": [-0.48, -0.15, -0.15]
+        }, {
+            "path": "./assets/models/skate.gltf",
+            "position": [0.2, -0.38, -0.32]
+        },
+        {
+            "path": "./assets/models/pomme.gltf",
+            "position": [-0.48, -0.12, -0.15]
+        },
+        {
+            "path": "./assets/models/coussins.gltf",
+            "position": [-0.18, -0.13, -0.25]
+        },
+        {
+            "path": "./assets/models/plante.gltf",
+            "position": [0.58, -0.22, -0.1]
+        },
+        {
+            "path": "./assets/models/laptop.gltf",
+            "position": [0.15, -0.18, -0.25]
+        },
+        {
+            "path": "./assets/models/table.gltf",
+            "position": [-0.55, -0.3, -0.25]
+        }, 
+        {
+            "path": "./assets/models/guitare.gltf",
+            "position": [-0.10, -0.17, -0.1]
         },
         {
             "path": "./assets/models/sol.gltf",
-            "position": [0, -0.23, 0]
+            "position": [0, -0.42, -0.42]
+        },
+        {
+            "path": "./assets/models/lampe.gltf",
+            "position": [0.5, -0.1, -0.4]
+        },
+        {
+            "path": "./assets/models/tasse.gltf",
+            "position": [-0.62, -0.17, -0.17]
         }
     ]
 }

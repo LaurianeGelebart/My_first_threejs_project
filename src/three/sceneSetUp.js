@@ -20,8 +20,8 @@ export const createScene = () =>
     pointLight.position.set(-0.6, 0.2, 0.8);
     scene.add(pointLight);
 
-    const shadowLight = new THREE.PointLight(0xf7e3c1, 4);
-    shadowLight.position.set(1, 0.5, -0.3);
+    const shadowLight = new THREE.PointLight(0xf7e3c1, 2);
+    shadowLight.position.set(0.5, 0.6, -0.4);
     shadowLight.castShadow = true;
     shadowLight.shadow.radius = 8;
     scene.add(shadowLight);
