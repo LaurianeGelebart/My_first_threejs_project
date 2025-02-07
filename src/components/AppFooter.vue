@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>&copy;Copyright 2024 | Lauriane Gélébart</p>
+        <p>&copy;Copyright 2025 | Lauriane Gélébart</p>
     </footer>
 </template>
 

@@ -34,9 +34,9 @@
             "name" : "sol",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0.5271152257919312,
-                    0.5332764983177185,
-                    0.5088813900947571,
+                    0.92,
+                    0.99,
+                    0.99,
                     1
                 ],
                 "metallicFactor" : 0,
