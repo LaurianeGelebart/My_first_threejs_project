@@ -24,6 +24,7 @@ export const createScene = () =>
     shadowLight.position.set(0.5, 0.6, -0.4);
     shadowLight.castShadow = true;
     shadowLight.shadow.radius = 8;
+    shadowLight.name = "shadowLight";
     scene.add(shadowLight);
 
     return scene;

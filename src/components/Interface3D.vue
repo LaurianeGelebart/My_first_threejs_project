@@ -17,6 +17,14 @@ import {
 export default {
   name: "Interface3D",
 
+  data() {
+    return {
+      state: { 
+        lightIsOn: true,
+    },
+  };
+  },
+
   async mounted() {
     const canvas = this.$refs.scene3D;
 
@@ -36,7 +44,7 @@ export default {
       onCursorMove(event, this.camera, canvas)
     );
     canvas.addEventListener("click", (event) =>
-      onCanvasClick(event, this.camera, this.scene)
+      onCanvasClick(event, this.camera, this.scene, this.state)
     );
 
     // Gérer le redimensionnement de la fenêtre
@@ -47,12 +55,6 @@ export default {
 
   // Nettoyer les ressources avant la destruction du composant
   beforeUnmount() {
-    const canvas = this.$refs.scene3D;
-
-    canvas.removeEventListener("mousemove");
-    canvas.removeEventListener("click");
-    window.removeEventListener("resize");
-
     if (this.renderer) this.renderer.dispose();
     if (this.scene) this.scene.clear();
   },
