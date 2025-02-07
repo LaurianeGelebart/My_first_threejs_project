@@ -8,59 +8,43 @@
 import { createCamera, createRenderer, createScene } from "@/three/sceneSetUp";
 import { retrieveData } from "@/three/modelsLoarder";
 import { animate } from "@/three/animation";
-import { onCursorMove, onCanvasClick } from "@/three/eventHandlers";
+import {
+  onCursorMove,
+  onCanvasClick,
+  onWindowResize,
+} from "@/three/eventHandlers";
 
 export default {
   name: "Interface3D",
 
   async mounted() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
     const canvas = this.$refs.scene3D;
 
     // Créer la scène 3D
-    const scene = createScene();
-    const renderer = createRenderer(width, height, canvas);
-    const camera = createCamera(width, height);
-    this.sceneContext = {
-      scene,
-      camera,
-      renderer,
-    };
+    this.scene = createScene();
+    this.renderer = createRenderer(canvas);
+    this.camera = createCamera();
 
     // Récupérer les models
-    await retrieveData(this.sceneContext.scene);
+    await retrieveData(this.scene);
 
     // Lancer la boucle d'animation
-    animate(this.sceneContext);
+    animate(this.camera, this.scene, this.renderer);
 
     // Ecouter les actions sur la scène
-    canvas.addEventListener(
-      "mousemove",
-      (event) => onCursorMove(event, this.sceneContext.camera, canvas),
-      false
+    canvas.addEventListener("mousemove", (event) =>
+      onCursorMove(event, this.camera, canvas)
     );
-    canvas.addEventListener(
-      "click",
-      (event) =>
-        onCanvasClick(event, this.sceneContext.camera, this.sceneContext.scene),
-      false
+    canvas.addEventListener("click", (event) =>
+      onCanvasClick(event, this.camera, this.scene)
+    );
+
+    // Gérer le redimensionnement de la fenêtre
+    window.addEventListener("resize", () =>
+      onWindowResize(this.camera, this.renderer)
     );
   },
 
-  beforeUnmount() {
-    const canvas = this.$refs.scene3D;
-    canvas.removeEventListener("mousemove", (event) =>
-      onCursorMove(event, this.sceneContext.camera, canvas)
-    );
-    canvas.removeEventListener("click", (event) =>
-      onCanvasClick(event, this.sceneContext.camera, this.sceneContext.scene)
-    );
-    if (this.sceneContext) {
-      this.sceneContext.renderer.dispose();
-      this.sceneContext.scene.clear();
-    }
-  },
 };
 </script>
 
@@ -70,7 +54,7 @@ export default {
 }
 
 .scene3D canvas {
-  width: 100vw !important; /* Largeur CSS */
-  height: 90vh !important; /* Hauteur CSS */
+  width: 100vw !important;
+  height: 90vh !important;
 }
 </style>

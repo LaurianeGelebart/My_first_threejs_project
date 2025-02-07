@@ -44,9 +44,32 @@ export const onCanvasClick = (event, camera, scene) => {
     const intersects = raycaster.intersectObjects(scene.children, true);
     if (intersects.length > 0) {
         const clickedObject = intersects[0];
-        console.log("Objet cliqué :", clickedObject);
+        console.log("Clicked object :", clickedObject);
     }
 };
+
+/**
+ * Gère le redimensionnement de la fenêtre en ajustant la caméra et le renderer.
+ * 
+ * @param {THREE.Camera} camera - La caméra Three.js à mettre à jour.
+ * @param {THREE.WebGLRenderer} renderer - Le renderer Three.js à redimensionner.
+ * 
+ * @example
+ * window.addEventListener("resize", () => onWindowResize(camera, renderer));
+ */
+export const onWindowResize = (camera, renderer) => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Mettre à jour la caméra avec le nouveau ratio
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
+    // Redimensionner le renderer
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+};
+
 
 /**
  * Calcule la position normalisée de la souris par rapport à un élément canvas.
