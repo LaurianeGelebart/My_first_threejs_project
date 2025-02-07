@@ -36,18 +36,15 @@ export const createScene = () =>
  * @returns {THREE.WebGLRenderer} Le renderer WebGL configuré.
  *
  * @example
- * const renderer = createRenderer(window.innerWidth, window.innerHeight, document.body);
+ * const renderer = createRenderer(document.body);
  */
 export const createRenderer = (container) => 
 {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
     const renderer = new THREE.WebGLRenderer();
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     
-    renderer.setSize(width, height);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
     container.appendChild(renderer.domElement);
@@ -60,13 +57,11 @@ export const createRenderer = (container) =>
  * @returns {THREE.PerspectiveCamera} La caméra Perspective créée.
  *
  * @example
- * const camera = createCamera(window.innerWidth, window.innerHeight);
+ * const camera = createCamera();
  */
 export const createCamera = () => 
 {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.set(0, 0, 1);
     camera.lookAt(0, 0, 0);
     return camera;
