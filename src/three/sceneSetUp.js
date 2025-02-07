@@ -11,8 +11,8 @@ import * as THREE from "three";
 export const createScene = () => 
 {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xfafafa);
-  
+    scene.background = new THREE.Color(0xb5bbbd);
+      
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
     scene.add(ambientLight);
 
@@ -32,21 +32,19 @@ export const createScene = () =>
 /**
  * Crée et configure le renderer WebGL, y compris la taille, le ratio de pixel, et la gestion des ombres.
  *
- * @param {number} width - La largeur de la fenêtre.
- * @param {number} height - La hauteur de la fenêtre.
  * @param {HTMLElement} container - L'élément DOM dans lequel le renderer sera ajouté.
  * @returns {THREE.WebGLRenderer} Le renderer WebGL configuré.
  *
  * @example
- * const renderer = createRenderer(window.innerWidth, window.innerHeight, document.body);
+ * const renderer = createRenderer(document.body);
  */
-export const createRenderer = (width, height, container) => 
+export const createRenderer = (container) => 
 {
     const renderer = new THREE.WebGLRenderer();
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     
-    renderer.setSize(width, height);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
     container.appendChild(renderer.domElement);
@@ -56,16 +54,14 @@ export const createRenderer = (width, height, container) =>
 /**
  * Crée et configure une caméra Perspective pour la scène.
  *
- * @param {number} width - La largeur de la fenêtre.
- * @param {number} height - La hauteur de la fenêtre.
  * @returns {THREE.PerspectiveCamera} La caméra Perspective créée.
  *
  * @example
- * const camera = createCamera(window.innerWidth, window.innerHeight);
+ * const camera = createCamera();
  */
-export const createCamera = (width, height) => 
+export const createCamera = () => 
 {
-    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.set(0, 0, 1);
     camera.lookAt(0, 0, 0);
     return camera;
