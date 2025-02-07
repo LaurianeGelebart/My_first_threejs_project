@@ -1,45 +1,39 @@
 <template>
-    <div class="Interface3D">
-        <div class="scene3D" ref="scene3D"></div>
-    </div>
+  <div class="Interface3D">
+    <div class="scene3D" ref="scene3D"></div>
+  </div>
 </template>
 
 <script>
-import { createCamera, createRenderer, createScene } from '@/three/sceneSetUp';
-import { retrieveData } from '@/three/modelsLoarder';
-import { animate } from '@/three/animation';
+import { createCamera, createRenderer, createScene } from "@/three/sceneSetUp";
+import { retrieveData } from "@/three/modelsLoarder";
+import { animate } from "@/three/animation";
 
 export default {
-    name: "Interface3D",
-    async mounted() 
-    {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+  name: "Interface3D",
 
-        // Créer la scène 3D
-        const scene = createScene();
-        const renderer = createRenderer(width, height, this.$refs.scene3D);
-        const camera = createCamera(width, height);
-        this.sceneContext = {
-            scene,
-            camera,
-            renderer
-        };
+  async mounted() {
+    const canvas = this.$refs.scene3D;
 
-        // Récupérer les models 
-        await retrieveData(this.sceneContext.scene);
+    // Créer la scène 3D
+    this.scene = createScene();
+    this.renderer = createRenderer(canvas);
+    this.camera = createCamera();
 
-        // Lancer la boucle d'animation
-        animate(this.sceneContext)
-        
-        // Ecouter les actions sur la scène 
-    }
-}
+    // Récupérer les models
+    await retrieveData(this.scene);
+
+    // Lancer la boucle d'animation
+    animate(this.camera, this.scene, this.renderer);
+
+    // Ecouter les actions sur la scène
+  },
+};
 </script>
 
 <style>
-.scene3D{
-    background: rgb(255, 255, 255);
+.scene3D {
+  background: rgb(255, 255, 255);
 }
 
 .scene3D canvas {

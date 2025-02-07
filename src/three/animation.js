@@ -1,20 +1,17 @@
 /**
  * Démarre la boucle d'animation pour rendre en continu la scène Three.js.
- * Appelle la fonction de rendu de la scène à chaque frame pour créer une animation fluide.
- *
- * @param {Object} context - Contexte contenant les éléments de rendu nécessaires pour Three.js.
- * @param {THREE.Renderer} context.renderer - Le renderer Three.js pour dessiner la scène.
- * @param {THREE.Scene} context.scene - La scène Three.js à afficher.
- * @param {THREE.Camera} context.camera - La caméra utilisée pour afficher la scène.
- *
+ * 
+ * @param {THREE.Camera} camera - Caméra Three.js
+ * @param {THREE.Scene} scene - Scène Three.js 
+ * @param {THREE.WebGLRenderer} renderer - Renderer Three.js
+ * 
  * @example
- * animate({ renderer: renderer, scene: scene, camera: camera });
+ * animate(camera, scene, renderer);
  */
-export function animate(context) 
-{
-    const updateAnimation = () => {
-      requestAnimationFrame(updateAnimation);
-      context.renderer.render(context.scene, context.camera);
-    }
-    updateAnimation();
+export const animate = (camera, scene, renderer) => {
+  const updateAnimation = () => {
+    requestAnimationFrame(updateAnimation);
+    renderer.render(scene, camera);
+  }
+  updateAnimation();
 }

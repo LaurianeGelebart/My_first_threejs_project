@@ -39,10 +39,10 @@
             },
             "name" : "bois_table.006",
             "pbrMetallicRoughness" : {
-                "baseColorFactor" : [
-                    0.027717892080545425,
+                "baseColorFactor" : [                    
+                    0.02917892080545425,
                     0.011269466020166874,
-                    0.0028037377633154392,
+                    0.0078037377633154392,                    
                     1
                 ],
                 "metallicFactor" : 0,
