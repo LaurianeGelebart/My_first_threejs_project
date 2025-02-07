@@ -1,32 +1,27 @@
 /**
  * Démarre la boucle d'animation pour rendre en continu la scène Three.js.
- *
- * @param {Object} context - Contexte contenant les éléments nécessaires pour Three.js : renderer, scene, et camera.
- *
+ * 
+ * @param {THREE.Camera} camera - Caméra Three.js
+ * @param {THREE.Scene} scene - Scène Three.js 
+ * @param {THREE.WebGLRenderer} renderer - Renderer Three.js
+ * 
  * @example
- * animate({ context });
+ * animate(camera, scene, renderer);
  */
-export const animate = (context) => {
-  if (!context.renderer || !context.scene || !context.camera) {
-    throw new Error('Context must include renderer, scene, and camera');
-  }
+export const animate = (camera, scene, renderer) => {
   let previousTime = 0;
 
   const updateAnimation = (timestamp) => {
     requestAnimationFrame(updateAnimation);
-
-    // Calcul du temps écoulé
-    const deltaTime = (timestamp - previousTime) / 1000; 
+    const deltaTime = (timestamp - previousTime) / 1000;
     previousTime = timestamp;
 
-    // Rendre la scène
-    context.renderer.render(context.scene, context.camera);
+    renderer.render(scene, camera);
 
-    // Mettre à jour les rotations des modèles "vapeur"
-    context.scene.children.forEach((pivot) => {
+    scene.children.forEach((pivot) => {
       const model = pivot?.children[0];
       if (model && /vapeur/i.test(model.name)) {
-        pivot.rotation.y += Math.PI * deltaTime *0.5; 
+        pivot.rotation.y += Math.PI * deltaTime * 0.5;
       }
     });
   };

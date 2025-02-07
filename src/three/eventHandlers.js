@@ -65,3 +65,16 @@ const getNormalizedMousePosition = (event, canvasElement) => {
         y: -((event.clientY - canvasBounds.top) / canvasBounds.height) * 2 + 1,
     };
 };
+
+export const onWindowResize = (camera, renderer) => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Mettre à jour la caméra avec le nouveau ratio
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
+    // Redimensionner le renderer
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+};
